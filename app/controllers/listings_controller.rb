@@ -12,7 +12,11 @@ class ListingsController < ApplicationController
         end
       end
     else
-      @listings = Listing.all
+      @listings = Listing.paginate(page: params[:page]).order('created_at DESC')
+      respond_to do |format|
+        format.html
+        format.js
+      end
     end
   end
 
@@ -23,17 +27,11 @@ class ListingsController < ApplicationController
     @listing = Listing.new(listing_params)
     @listing.user_id = current_user[:id]
     @listing.image = params["listing"]["image"]
-    # @listing.save
-    # redirect_to root_path
-    respond_to do |format|
-      if @listing.save
-        format.js # Will search for create.js.erb
+    @listing.save
+     respond_to do |format|
+        format.js
         format.html { redirect_to root_path }
-      else
-        format.html { render root_path }
-        format.json { render root_path }
       end
-    end
   end
 
  # GET /listings/1
@@ -41,11 +39,17 @@ class ListingsController < ApplicationController
   def show
   end
 
+  def destroy
+    @listing = Listing.find(params[:id])
+    @listing.destroy
+    redirect_to root_path
+  end
+
 
   private
     # Never trust parameters from the scary internet, only allow the white list through.
     def listing_params
-      params.require(:listing).permit(:title, :price, :location, :bedrooms, :bathrooms, :amenities, :description, {image:[]}, :used_date, :all_tags, :tag)
+      params.require(:listing).permit(:id, :page, :title, :price, :location, :bedrooms, :bathrooms, :amenities, :description, {image:[]}, :used_date, :all_tags, :tag)
     end
 end
 
