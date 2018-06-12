@@ -18,6 +18,7 @@ class ReservationsController < ApplicationController
    @reservation.start_date = Date.parse @reservation.date.to_s.gsub(/(\d{4})-(\d{2})-(\d{2})....(\d{4})-(\d{2})-(\d{2})/, '\1-\2-\3')
    @reservation.end_date = Date.parse @reservation.date.to_s.gsub(/(\d{4})-(\d{2})-(\d{2})....(\d{4})-(\d{2})-(\d{2})/, '\4-\5-\6')
    @reservation.cost = (@reservation.end_date - @reservation.start_date + 1) * 500
+   #another poor bug fix to the month overflow problem, 500 * 30 = 15000
    if @reservation.cost < 0
       @reservation.cost += 15000 
    end

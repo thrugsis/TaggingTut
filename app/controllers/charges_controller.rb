@@ -4,9 +4,9 @@ class ChargesController < ApplicationController
 
 	def create
 
-	  # Amount in cents
 	  @reservation = Reservation.find(params[:id])
 	  @listing = Listing.find(@reservation.listing_id)
+	  # Amount in cents
 	  @amount = @reservation.cost
 
 	  customer = Stripe::Customer.create(

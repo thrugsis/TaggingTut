@@ -23,11 +23,12 @@ class ListingsController < ApplicationController
     @listing = Listing.new(listing_params)
     @listing.user_id = current_user[:id]
     @listing.image = params["listing"]["image"]
+    # workaround if you don't want to use javascript to reset the fields
     # @listing.save
     # redirect_to root_path
     respond_to do |format|
       if @listing.save
-        format.js # Will search for create.js.erb
+        format.js # Will search for create.js.erb and reload the create listing field and update the listings
         format.html { redirect_to root_path }
       else
         format.html { render root_path }
@@ -36,8 +37,6 @@ class ListingsController < ApplicationController
     end
   end
 
- # GET /listings/1
-  # GET /listings/1.json
   def show
   end
 
@@ -49,17 +48,3 @@ class ListingsController < ApplicationController
     end
 end
 
-
-# else
-#             j = 0 
-#             a = ""
-#             @jail = @listings
-#             while j < @jail.collect(&:tags).flatten.uniq.length  
-#               a += @jail.collect(&:tags).flatten.uniq[j][:name] 
-#               j+= 1 
-#             end
-#             if !a.include?(x.to_s)
-#               @listings = Listing.tagged_with(x)
-#               @listings = @listings.uniq
-#             end
-#           end
