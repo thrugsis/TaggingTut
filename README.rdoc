@@ -1,3 +1,53 @@
-== README
+= PairBNB
+This is a mock AirBnB app made to get comfortable with OOP using Ruby on Rails, database access, css, html and JS.  
 
-This is a tutorial for building tagging system on Rails, find it on (sitepoint)[www.sitepoint.com/tagging-scratch-rails/] 
+== Features outside CRUD
+
+Search: The way search worked was with tagging and when the index page loaded, if there was a tag in the parameters it would load only listing with the tag- however if you refreshed the page after searching the results would still only be those with the tag. 
+
+Auto-update: When a new listing was submitted, jQuery was used to invisibly render the new listing in the correct format, and then add it before all the other displayed listings and fade it in, while reseting the input field.
+
+Oauth: Session is updated when user logs in and is authenticated by omniauth with provider(either facebook or google) by creating an authentiction object with user and token, then redirects to root url with notice/alert/flash saying "signed in". Token is updated when user signs in again
+
+Image upload: Mount image uploaders and use carrierwave and fog to upload and retrieve from AWS S3
+
+Payments: Stripe API Payments creates a customer and a charge using the range of dates selected from flatpickr, then changes reservation status to paid.  
+
+Calendar: Flatpickr was used with regex to add busy days to listings and permit calendar blocking for those days
+
+Regex(gsub) to convert dates into proper format to use with flatpickr
+
+
+== Gems
+jQuery
+bcrypt
+rspec
+byebug
+carrierwave (s3)
+fog-aws
+figaro (concealed keys)
+stripe(payments)
+postgres
+omniauth
+flatpickr
+
+
+== Database
+
+Many Users, Many Reservations
+Many Users, Many Listings
+1 Listing, Many Reservations
+1 Reservation, 1 Payment
+
+
+
+== Errors
+
+Create.js.erb month overflow logic
+Reservations controller for the same reason
+
+differentiate between tags, tag and tagl
+
+regex gsub for flatpickr dates is used repeatedly throughout the app
+
+
