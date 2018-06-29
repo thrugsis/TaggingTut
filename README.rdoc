@@ -50,4 +50,7 @@ differentiate between tags, tag and tagl
 
 regex gsub for flatpickr dates is used repeatedly throughout the app
 
+== Update
+There is more that I need to add to this readme.
+
 
