@@ -6,6 +6,9 @@ development:
   encoding: utf8
   database: project_development
   pool: 5
+  port: 5434
+  username: postgres
+  password: <%= ENV['POSTGRESQL_PW'] %>
 
 test: &TEST
   adapter: postgresql
