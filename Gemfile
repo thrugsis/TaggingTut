@@ -17,6 +17,7 @@ gem 'carrierwave', '~> 1.0'
 gem 'fog-aws'
 gem 'mail'
 gem 'rspec-given'
+gem 'sprockets', '~> 2.12.5'
 
 gem 'pg', '~> 0.17.1'
 gem 'figaro'
