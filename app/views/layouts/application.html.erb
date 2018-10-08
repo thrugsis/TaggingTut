@@ -23,8 +23,8 @@
   <body><h2 color="gray"> <%= link_to "PairBNB", root_path %></h2>
   <div align='right' class='pr'>
     <% if signed_in? %>
-     <a href=<% user_path(current_user)%>> Signed in as: <%= current_user.email %></a>
-      <%= button_to 'Sign out', sign_out_path, method: :delete, class: "button" %>
+      Signed in as: <%= current_user.email %>
+      <%= button_to 'Sign out', sign_out_path, method: :delete %>
     <% else %>
       <a href="/auth/facebook">
       <img src="https://s3-ap-southeast-1.amazonaws.com/airbnb-photos-nextacademy/facebook-sign-in-button.png" width=220px height=220px> </a>
